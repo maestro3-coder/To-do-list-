@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Libre Franklin", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --color-secondary: var(--color-indigo-600);
+  --color-secondary-light: var(--color-indigo-50);
+  --color-secondary-hover: var(--color-indigo-700);
+}
+
+/* Custom Calendar Styles */
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  font-family: inherit !important;
+  background: transparent !important;
+}
+
+.react-calendar__tile {
+  padding: 1.5em 0.5em !important;
+  border-radius: 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.react-calendar__tile:hover {
+  background-color: var(--color-indigo-50) !important;
+}
+
+.react-calendar__tile--active {
+  background: var(--color-indigo-600) !important;
+  color: white !important;
+}
+
+.react-calendar__tile--now {
+  background: var(--color-indigo-50) !important;
+  color: var(--color-indigo-700) !important;
+  font-weight: bold !important;
+}
+
+.react-calendar__navigation button {
+  min-width: 44px !important;
+  background: none !important;
+  font-size: 1.2rem !important;
+  margin-top: 8px !important;
+  border-radius: 0.5rem !important;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: var(--color-indigo-50) !important;
+}
+
+/* Custom Quill Styles */
+.ql-container.ql-snow {
+  border: none !important;
+  font-family: inherit !important;
+  font-size: 1rem !important;
+}
+
+.ql-toolbar.ql-snow {
+  border: none !important;
+  border-bottom: 1px solid #f5f5f4 !important;
+  padding: 1rem 0 !important;
+}
+
+.ql-editor {
+  padding: 1.5rem 0 !important;
+  color: #44403c !important;
+  line-height: 1.8 !important;
+}
+
+.ql-editor p {
+  margin-bottom: 1rem !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-indigo-200);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-indigo-300);
+}
