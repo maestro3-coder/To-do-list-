@@ -1,0 +1,5 @@
+{
+  "name": "ZenTask: Modern Productivity Suite",
+  "description": "A minimal, AI-powered task management app with real-time sync, calendar integration, and rich text notes.",
+  "requestFramePermissions": ["notifications"]
+}

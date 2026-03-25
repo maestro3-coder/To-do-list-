@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "darkMode": { "type": "boolean" },
+            "notificationsEnabled": { "type": "boolean" }
+          }
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "A productivity task",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "dueDate": { "type": "string", "format": "date" },
+        "dueTime": { "type": "string" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high"] },
+        "completed": { "type": "boolean" },
+        "category": { "type": "string" },
+        "reminderMinutesBefore": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "title", "completed"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "A rich text note",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "taskId": { "type": "string" },
+        "content": { "type": "string" },
+        "lastUpdated": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Task documents"
+    },
+    "/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Note documents"
+    }
+  }
+}

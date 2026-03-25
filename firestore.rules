@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.uid;
+    }
+    function isNewDocOwner() {
+      return isAuthenticated() && request.auth.uid == request.resource.data.uid;
+    }
+
+    // User Rules
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create, update: if isOwner(userId) && request.resource.data.uid == userId;
+    }
+
+    // Task Rules
+    match /tasks/{taskId} {
+      allow read: if isDocOwner();
+      allow create: if isNewDocOwner();
+      allow update: if isDocOwner() && request.resource.data.uid == resource.data.uid;
+      allow delete: if isDocOwner();
+    }
+
+    // Note Rules
+    match /notes/{noteId} {
+      allow read: if isDocOwner();
+      allow create: if isNewDocOwner();
+      allow update: if isDocOwner() && request.resource.data.uid == resource.data.uid;
+      allow delete: if isDocOwner();
+    }
+  }
+}
